@@ -21,7 +21,7 @@ These dialogue lines are called "scenes", each of which are made with one speaki
 Here's an example of a simple scene:
 
 ```
-\# comments look like this
+# comments look like this
 Evelyn:               (Speaker)
 Where did they go?    (Dialogue)
 ```
