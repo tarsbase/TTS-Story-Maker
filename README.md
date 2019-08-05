@@ -1,3 +1,7 @@
+# TTS (Text-to-Speech) Story Maker
+
+![Screenshot](/Screenshots/photo.png)
+
 # What is it?
 TTS (Text-to-Speech) Story Maker is an app that allows you to make stories, and have your computer read it to you, In different voices.
 
