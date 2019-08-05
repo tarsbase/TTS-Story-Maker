@@ -21,7 +21,7 @@ Characters can be assigned with their custom voice and portrait through the "New
 
 You can create a new character by clicking on the "+" button on the sidebar. Or, if you prefer using the menubar, click on "Story" then "Add Character".
 
-# How can I add more voices?
+# How do I add more voices?
 TTS Story Maker uses your Mac device's "Speech' voices for your characters. 
 
 To add new voices to your Mac, go to System Preferences->Accessibility->Speech. There's a drop-down menu called "System Voice", click on it, then on customise. Choose the voices you want to install then click "Ok".
