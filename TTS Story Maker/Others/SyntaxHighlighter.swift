@@ -25,6 +25,8 @@ class SyntaxHighlighter: NSObject {
 	}
 	
 	init(textView: NSTextView) {
+		super.init()
+		
 		self.textView = textView
 		
 		commentPattern = try! NSRegularExpression(pattern: "# ?[^\n]+", options: [])
@@ -59,47 +61,28 @@ class SyntaxHighlighter: NSObject {
 		
 		// reset highlighting
 		textView.undoManager?.disableUndoRegistration()
-		
-		contents.addAttributes([.foregroundColor: NSColor.controlTextColor], range: range)
-		textView.insertText(contents, replacementRange: range)
-		
+		textView.textStorage?.addAttributes([.foregroundColor: NSColor.controlTextColor], range: range)
 		textView.undoManager?.enableUndoRegistration()
 	}
 	
 	private func _highlight() {
 		let text = textView.string
-		let contents = textView.attributedString().mutableCopy() as! NSMutableAttributedString
+		let contents = textView.attributedString()
 		let range = NSMakeRange(0, contents.length)
 		
-		// store the text cursor's current state
-		var cursorState: NSValue?
-		
-		if textView.selectedRanges.count > 0 {
-			cursorState = textView.selectedRanges.first
-		}
-		
 		textView.undoManager?.disableUndoRegistration()
-		contents.addAttributes([.foregroundColor: NSColor.controlTextColor], range: range)
+		textView.textStorage?.addAttributes([.foregroundColor: NSColor.controlTextColor], range: range)
 		
 		// find language elements we can highlight
 		let comments = commentPattern.matches(in: text, options: [], range: range)
 		let speakers = speakerPattern.matches(in: text, options: [], range: range)
 		
 		for speaker in speakers {
-			contents.addAttributes([.foregroundColor: speakerColour], range: speaker.range)
+			textView.textStorage?.addAttributes([.foregroundColor: speakerColour], range: speaker.range)
 		}
 		
 		for comment in comments {
-			contents.addAttributes([.foregroundColor: NSColor.systemGreen], range: comment.range)
-		}
-		
-		// apply our new highlight
-		textView.insertText(contents, replacementRange: range)
-		
-		// restore the text cursor's position (and the scroll position)
-		if let state = cursorState {
-			textView.selectedRanges.insert(state, at: 0)
-			textView.scrollRangeToVisible(state.rangeValue)
+			textView.textStorage?.addAttributes([.foregroundColor: NSColor.systemGreen], range: comment.range)
 		}
 				
 		textView.undoManager?.enableUndoRegistration()
