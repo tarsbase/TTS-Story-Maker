@@ -2,11 +2,13 @@
 
 ![Screenshot](/Screenshots/photo.png)
 
-(Character portraits used in the screenshot)
+Character portraits used in the screenshot:
+```
 https://unsplash.com/photos/3ZR-98cZ0Os
 https://unsplash.com/photos/bsvhLMUy_jE
 https://unsplash.com/photos/w1RBHfCCdsw
 https://unsplash.com/photos/umjO1TKCqh0
+```
 
 # What is it?
 TTS (Text-to-Speech) Story Maker is an app that allows you to make stories, and have your computer read it to you, In different voices.
