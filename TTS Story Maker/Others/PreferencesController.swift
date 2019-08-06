@@ -19,6 +19,7 @@ struct DelegateObject {
 
 class PreferencesController: NSObject {
 	static let shared = PreferencesController()
+	private var uniqueIDs: [String: Int] = [:]
 	
 	let defaults = UserDefaults.standard
 	private var delegates: [DelegateObject] = []
@@ -35,6 +36,18 @@ class PreferencesController: NSObject {
 			defaults.set(true, forKey: KTPEditorSyntaxHighlighting)
 			defaults.set(true, forKey: KTPEditorAutoCorrectSuggest)
 		}
+	}
+	
+	func uniqueKey(name: String) -> String {
+		guard let uniqueID = uniqueIDs[name] else {
+			uniqueIDs[name] = Int.min
+			return uniqueKey(name: name)
+		}
+		
+		let key = "name-\(uniqueID)"
+		uniqueIDs[name] = uniqueID + 1
+		
+		return key
 	}
 	
 	func set(value: Any?, for key: String) {

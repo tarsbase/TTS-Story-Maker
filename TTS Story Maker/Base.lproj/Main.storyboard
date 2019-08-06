@@ -67,7 +67,12 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="File" id="bib-Uj-vzu">
                                     <items>
-                                        <menuItem title="New" keyEquivalent="n" id="Was-JA-tGl">
+                                        <menuItem title="New Editor Window" keyEquivalent="N" id="iSx-gy-5UB">
+                                            <connections>
+                                                <segue destination="B8D-0N-5wS" kind="show" id="ifY-eH-EoE"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="New File (for selected window)" keyEquivalent="n" id="Was-JA-tGl">
                                             <connections>
                                                 <action selector="newWithSender:" target="Ady-hI-5gd" id="tbg-b9-DcJ"/>
                                             </connections>
@@ -374,12 +379,6 @@
                                                 <action selector="performZoom:" target="Ady-hI-5gd" id="DIl-cC-cCs"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="97J-P0-tVv"/>
-                                        <menuItem title="Editor Window" keyEquivalent="1" id="iSx-gy-5UB">
-                                            <connections>
-                                                <segue destination="B8D-0N-5wS" kind="show" id="ifY-eH-EoE"/>
-                                            </connections>
-                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="eu3-7i-yIM"/>
                                         <menuItem title="Bring All to Front" id="LE2-aR-0XJ">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -441,15 +440,14 @@
             <objects>
                 <viewController id="box-nY-yYh" customClass="PreferencesViewController" customModule="TTS_Story_Maker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="92b-Xc-3N5">
-                        <rect key="frame" x="0.0" y="0.0" width="547" height="287"/>
+                        <rect key="frame" x="0.0" y="0.0" width="547" height="327"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="25" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Alf-lM-htR">
-                                <rect key="frame" x="16" y="30" width="515" height="228"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="25" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Alf-lM-htR">
+                                <rect key="frame" x="16" y="29" width="515" height="270"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dxk-2g-jXV">
-                                        <rect key="frame" x="-2" y="199" width="147" height="29"/>
+                                        <rect key="frame" x="-2" y="241" width="147" height="29"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Preferences" id="fdZ-st-xnE">
                                             <font key="font" metaFont="systemHeavy" size="24"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -457,10 +455,10 @@
                                         </textFieldCell>
                                     </textField>
                                     <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="26" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lKe-PD-j1C">
-                                        <rect key="frame" x="0.0" y="0.0" width="515" height="174"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="515" height="216"/>
                                         <subviews>
                                             <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="17" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WsV-h8-ju9">
-                                                <rect key="frame" x="0.0" y="95" width="515" height="79"/>
+                                                <rect key="frame" x="0.0" y="137" width="515" height="79"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="M0Y-NP-Ajn">
                                                         <rect key="frame" x="-2" y="62" width="77" height="17"/>
@@ -477,7 +475,7 @@
                                                                 <rect key="frame" x="0.0" y="21" width="515" height="24"/>
                                                                 <subviews>
                                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UIe-pO-W7E">
-                                                                        <rect key="frame" x="-2" y="4" width="89" height="17"/>
+                                                                        <rect key="frame" x="-2" y="3" width="89" height="17"/>
                                                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Default Voice:" id="bMr-ul-lyk">
                                                                             <font key="font" metaFont="system"/>
                                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -571,10 +569,10 @@
                                                 </customSpacing>
                                             </stackView>
                                             <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="17" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hyK-b5-Rnn">
-                                                <rect key="frame" x="0.0" y="0.0" width="349" height="69"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="349" height="111"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cxI-DU-SV7">
-                                                        <rect key="frame" x="-2" y="52" width="42" height="17"/>
+                                                        <rect key="frame" x="-2" y="94" width="42" height="17"/>
                                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Editor" id="VmQ-Dp-q50">
                                                             <font key="font" metaFont="systemSemibold" size="13"/>
                                                             <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -582,10 +580,10 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="7" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sVG-44-Znv">
-                                                        <rect key="frame" x="0.0" y="0.0" width="349" height="35"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="349" height="77"/>
                                                         <subviews>
                                                             <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="XIW-fn-H4u">
-                                                                <rect key="frame" x="-2" y="19" width="353" height="18"/>
+                                                                <rect key="frame" x="-2" y="61" width="353" height="18"/>
                                                                 <buttonCell key="cell" type="check" title="Enable Auto Suggestion and Correction in Story Editor." bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="DXY-lN-vQp">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                     <font key="font" metaFont="system"/>
@@ -594,8 +592,18 @@
                                                                     <action selector="checkboxToggledWithSender:" target="box-nY-yYh" id="DBP-AH-Rgt"/>
                                                                 </connections>
                                                             </button>
+                                                            <button verticalHuggingPriority="750" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="X9x-Xa-MUs">
+                                                                <rect key="frame" x="-2" y="40" width="328" height="18"/>
+                                                                <buttonCell key="cell" type="check" title="Enable Character Name Completion in Story Editor" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Dry-bQ-ezd">
+                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                </buttonCell>
+                                                                <connections>
+                                                                    <action selector="checkboxToggledWithSender:" target="box-nY-yYh" id="W2R-t5-ILb"/>
+                                                                </connections>
+                                                            </button>
                                                             <button verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="nau-t8-kQz">
-                                                                <rect key="frame" x="-2" y="-2" width="185" height="18"/>
+                                                                <rect key="frame" x="-2" y="19" width="185" height="18"/>
                                                                 <buttonCell key="cell" type="check" title="Enable Syntax Highlighting" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Ncb-gK-JBY">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                     <font key="font" metaFont="system"/>
@@ -604,12 +612,26 @@
                                                                     <action selector="checkboxToggledWithSender:" target="box-nY-yYh" id="FI5-Sm-AVj"/>
                                                                 </connections>
                                                             </button>
+                                                            <button verticalHuggingPriority="750" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="7h5-k4-vFp">
+                                                                <rect key="frame" x="-2" y="-2" width="143" height="18"/>
+                                                                <buttonCell key="cell" type="check" title="Show Line Numbers" bezelStyle="regularSquare" imagePosition="left" inset="2" id="KPa-Bp-0is">
+                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                </buttonCell>
+                                                                <connections>
+                                                                    <action selector="checkboxToggledWithSender:" target="box-nY-yYh" id="G8A-uD-tiM"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <visibilityPriorities>
                                                             <integer value="1000"/>
                                                             <integer value="1000"/>
+                                                            <integer value="1000"/>
+                                                            <integer value="1000"/>
                                                         </visibilityPriorities>
                                                         <customSpacing>
+                                                            <real value="3.4028234663852886e+38"/>
+                                                            <real value="3.4028234663852886e+38"/>
                                                             <real value="3.4028234663852886e+38"/>
                                                             <real value="3.4028234663852886e+38"/>
                                                         </customSpacing>
@@ -645,17 +667,23 @@
                                 </customSpacing>
                             </stackView>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="Alf-lM-htR" firstAttribute="centerX" secondItem="92b-Xc-3N5" secondAttribute="centerX" id="BRQ-dA-UZi"/>
+                            <constraint firstItem="Alf-lM-htR" firstAttribute="centerY" secondItem="92b-Xc-3N5" secondAttribute="centerY" id="EmM-et-iZQ"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="allowsEffectsCB" destination="c5J-Aa-5wR" id="c2o-Tr-mNQ"/>
+                        <outlet property="autocompletionCB" destination="X9x-Xa-MUs" id="0db-96-4sU"/>
                         <outlet property="defaultVoiceCombobox" destination="CgQ-XX-A2Y" id="L0t-6o-Bh3"/>
                         <outlet property="editorCheckingCB" destination="XIW-fn-H4u" id="taJ-rY-Xre"/>
                         <outlet property="editorSyntaxCB" destination="nau-t8-kQz" id="LUy-4x-4g7"/>
+                        <outlet property="lineNumbersCB" destination="7h5-k4-vFp" id="mPl-cu-BUC"/>
                     </connections>
                 </viewController>
                 <customObject id="mlR-4F-nkm" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1271" y="-1036"/>
+            <point key="canvasLocation" x="1270.5" y="-1036.5"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="Koo-5S-ah0">
@@ -968,9 +996,9 @@ To add new voices to your Mac, go to System Preferences-&gt;Accessibility-&gt;Sp
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController showSeguePresentationStyle="single" id="B8D-0N-5wS" customClass="WindowController" customModule="TTS_Story_Maker" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Text-To-Speech Story Maker" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" titleVisibility="hidden" id="IQv-IB-iLA">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
+                <windowController storyboardIdentifier="editorWindow" id="B8D-0N-5wS" customClass="WindowController" customModule="TTS_Story_Maker" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Text-To-Speech Story Maker" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" tabbingIdentifier="editor" titleVisibility="hidden" id="IQv-IB-iLA">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
@@ -1018,7 +1046,8 @@ To add new voices to your Mac, go to System Preferences-&gt;Accessibility-&gt;Sp
                             <touchBarItem id="ypc-Oz-4Ts">
                                 <viewController key="viewController" id="JI2-IX-yuJ">
                                     <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qd6-oR-nB9">
-                                        <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                        <rect key="frame" x="0.0" y="-11" width="84" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="push" title="New" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zPr-tu-4IS">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" usesAppearanceFont="YES"/>
@@ -1032,7 +1061,8 @@ To add new voices to your Mac, go to System Preferences-&gt;Accessibility-&gt;Sp
                             <touchBarItem id="RBl-Wr-15r">
                                 <viewController key="viewController" id="mZD-It-lMC">
                                     <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UWe-Bh-M1Q">
-                                        <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                        <rect key="frame" x="0.0" y="-11" width="84" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="push" title="Open" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SVs-pU-5uH">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" usesAppearanceFont="YES"/>
@@ -1046,7 +1076,8 @@ To add new voices to your Mac, go to System Preferences-&gt;Accessibility-&gt;Sp
                             <touchBarItem id="hjT-ad-Shx">
                                 <viewController key="viewController" id="iTC-cL-LkH">
                                     <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IFc-2r-Va8">
-                                        <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                        <rect key="frame" x="0.0" y="-11" width="84" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zOz-rM-GHh">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" usesAppearanceFont="YES"/>
@@ -1061,7 +1092,8 @@ To add new voices to your Mac, go to System Preferences-&gt;Accessibility-&gt;Sp
                             <touchBarItem id="o1N-KH-KPU">
                                 <viewController key="viewController" id="O4s-QJ-mCD">
                                     <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VUL-2L-AAC">
-                                        <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                        <rect key="frame" x="0.0" y="-11" width="84" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="push" title="Play" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="RXf-b5-WTa">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" usesAppearanceFont="YES"/>
@@ -1075,7 +1107,8 @@ To add new voices to your Mac, go to System Preferences-&gt;Accessibility-&gt;Sp
                             <touchBarItem id="c4w-65-02t">
                                 <viewController key="viewController" id="lsb-yB-haP">
                                     <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="87F-ZX-I1o">
-                                        <rect key="frame" x="0.0" y="0.0" width="108" height="30"/>
+                                        <rect key="frame" x="0.0" y="-11" width="120" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="push" title="New Character" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3FZ-Ea-jE1">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" usesAppearanceFont="YES"/>
@@ -1102,7 +1135,7 @@ To add new voices to your Mac, go to System Preferences-&gt;Accessibility-&gt;Sp
         <scene sceneID="BAD-hi-AM4">
             <objects>
                 <windowController showSeguePresentationStyle="single" id="IS7-oI-vG0" customClass="PlaybackWindowController" customModule="TTS_Story_Maker" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Play" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="Ghz-V4-ifF">
+                    <window key="window" title="Play" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingIdentifier="playMode" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="Ghz-V4-ifF">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -1328,48 +1361,48 @@ To add new voices to your Mac, go to System Preferences-&gt;Accessibility-&gt;Sp
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="TTS_Story_Maker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="editorView" id="XfG-lQ-9wD" customClass="ViewController" customModule="TTS_Story_Maker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="582" height="461"/>
+                        <rect key="frame" x="0.0" y="0.0" width="582" height="467"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <splitView arrangesAllSubviews="NO" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wbd-gD-JLH">
-                                <rect key="frame" x="0.0" y="0.0" width="582" height="461"/>
+                                <rect key="frame" x="0.0" y="0.0" width="582" height="467"/>
                                 <subviews>
                                     <customView id="RCO-ft-5Am">
-                                        <rect key="frame" x="0.0" y="0.0" width="191" height="461"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="191" height="467"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eBY-6r-rNi">
-                                                <rect key="frame" x="0.0" y="0.0" width="191" height="461"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="191" height="467"/>
                                                 <subviews>
                                                     <visualEffectView appearanceType="inheritedVibrantLight" blendingMode="behindWindow" material="sidebar" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="lLd-nv-mYi">
-                                                        <rect key="frame" x="0.0" y="390" width="191" height="71"/>
+                                                        <rect key="frame" x="0.0" y="419" width="191" height="48"/>
                                                         <subviews>
                                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HpK-ta-OGQ">
-                                                                <rect key="frame" x="9" y="7" width="184" height="24"/>
+                                                                <rect key="frame" x="9" y="0.0" width="184" height="29"/>
                                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Characters" id="hnX-US-LqQ">
-                                                                    <font key="font" metaFont="systemHeavy" size="20"/>
+                                                                    <font key="font" metaFont="systemHeavy" size="24"/>
                                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                 </textFieldCell>
                                                             </textField>
                                                         </subviews>
                                                         <constraints>
-                                                            <constraint firstItem="HpK-ta-OGQ" firstAttribute="leading" secondItem="lLd-nv-mYi" secondAttribute="leading" constant="11" id="36g-Rl-jg6"/>
-                                                            <constraint firstAttribute="height" constant="71" id="LBr-By-1Lf"/>
-                                                            <constraint firstAttribute="trailing" secondItem="HpK-ta-OGQ" secondAttribute="trailing" id="UQf-ee-O7S"/>
-                                                            <constraint firstItem="HpK-ta-OGQ" firstAttribute="top" secondItem="lLd-nv-mYi" secondAttribute="top" constant="40" id="okY-BR-hfY"/>
+                                                            <constraint firstAttribute="height" constant="48" id="LBr-By-1Lf"/>
+                                                            <constraint firstItem="HpK-ta-OGQ" firstAttribute="leading" secondItem="lLd-nv-mYi" secondAttribute="leading" constant="11" id="YAr-HG-6hZ"/>
+                                                            <constraint firstAttribute="bottom" secondItem="HpK-ta-OGQ" secondAttribute="bottom" id="ZR9-I5-4Y2"/>
+                                                            <constraint firstAttribute="trailing" secondItem="HpK-ta-OGQ" secondAttribute="trailing" id="vrh-3R-2qs"/>
                                                         </constraints>
                                                     </visualEffectView>
                                                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="66" horizontalPageScroll="10" verticalLineScroll="66" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dlY-67-fJ1">
-                                                        <rect key="frame" x="0.0" y="0.0" width="191" height="390"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="191" height="419"/>
                                                         <clipView key="contentView" drawsBackground="NO" id="YaG-6L-7o7">
-                                                            <rect key="frame" x="0.0" y="0.0" width="191" height="390"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="191" height="419"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="64" rowSizeStyle="automatic" viewBased="YES" id="VcU-v6-Rh7">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="191" height="390"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="191" height="419"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                                     <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1488,7 +1521,7 @@ To add new voices to your Mac, go to System Preferences-&gt;Accessibility-&gt;Sp
                                                 </customSpacing>
                                             </stackView>
                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="4hB-Dh-GrR">
-                                                <rect key="frame" x="4" y="165" width="184" height="51"/>
+                                                <rect key="frame" x="4" y="168" width="184" height="51"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="180" id="Rv6-Et-7e5"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="ieg-EH-MS9"/>
@@ -1528,21 +1561,21 @@ To add new voices to your Mac, go to System Preferences-&gt;Accessibility-&gt;Sp
                                         </constraints>
                                     </customView>
                                     <customView id="1cM-xa-7cI">
-                                        <rect key="frame" x="192" y="0.0" width="390" height="461"/>
+                                        <rect key="frame" x="192" y="0.0" width="390" height="467"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8jf-d2-g6s">
-                                                <rect key="frame" x="0.0" y="0.0" width="390" height="461"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="390" height="467"/>
                                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="JXJ-hf-TOB">
-                                                    <rect key="frame" x="0.0" y="0.0" width="390" height="461"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="390" height="467"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="bar" incrementalSearchingEnabled="YES" continuousSpellChecking="YES" allowsUndo="YES" spellingCorrection="YES" grammarChecking="YES" smartInsertDelete="YES" id="jSE-96-8YG" customClass="NCRAutocompleteTextView">
-                                                            <rect key="frame" x="0.0" y="0.0" width="390" height="461"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="390" height="467"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                            <size key="minSize" width="390" height="461"/>
+                                                            <size key="minSize" width="390" height="467"/>
                                                             <size key="maxSize" width="390" height="10000000"/>
                                                             <attributedString key="textStorage">
                                                                 <fragment content="# Your story is waiting to be written!">
@@ -1562,7 +1595,7 @@ To add new voices to your Mac, go to System Preferences-&gt;Accessibility-&gt;Sp
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </scroller>
                                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="v4O-yV-kdh">
-                                                    <rect key="frame" x="374" y="0.0" width="16" height="461"/>
+                                                    <rect key="frame" x="374" y="0.0" width="16" height="467"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </scroller>
                                             </scrollView>
@@ -1810,7 +1843,6 @@ DQ
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="importButton" destination="32h-pT-88E" id="lAD-Nv-Ven"/>
                         <outlet property="nameField" destination="v3x-i3-oe6" id="W9m-Wp-tGU"/>
                         <outlet property="portraitView" destination="4Hr-WC-fPR" id="nGL-q8-1Nb"/>
                         <outlet property="titleLabel" destination="ofg-lB-LDf" id="B2M-25-zgR"/>

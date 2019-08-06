@@ -8,6 +8,10 @@
 
 import Cocoa
 
+protocol EditorDelegate {
+	func editorWasClosed()
+}
+
 class ViewController: NSViewController {
 	
 	@IBOutlet weak var sourceTextView: NCRAutocompleteTextView!
@@ -15,12 +19,17 @@ class ViewController: NSViewController {
 	@IBOutlet weak var noCharactersLabel: NSTextField!
 	
 	var highlighter: SyntaxHighlighter!
+	
 	weak var project: StoryProject!
+	var delegate: EditorDelegate?
 	
 	var tallyController: CharacterDialogueTally!
 	
+	private var prefDelegateKey = ""
 	private var lastText: String!
 	var editMode = false
+	
+	var autocompleteEnabled = true
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -28,6 +37,7 @@ class ViewController: NSViewController {
 		highlighter = SyntaxHighlighter(textView: sourceTextView)
 		
 		// set up our source editor
+		sourceTextView?.lnv_setUpLineNumberView()
 		sourceTextView?.font = NSFont.systemFont(ofSize: 18)
 		sourceTextView?.textColor = .controlTextColor
 		sourceTextView?.ncrDelegate = self
@@ -51,17 +61,15 @@ class ViewController: NSViewController {
 		sourceTextView?.string += "\n"
 		highlighter.highlight()
 		
-		PreferencesController.shared.add(delegate: self, with: "editor")		
+		// assign it a unique delegate identifier
+		prefDelegateKey = PreferencesController.shared.uniqueKey(name: "editor")
+		PreferencesController.shared.add(delegate: self, with: prefDelegateKey)
 	}
 	
 	func initialiseTallyController() {
 		// initialise our tally controller
 		tallyController = CharacterDialogueTally(project: project)
 		tallyController.delegate = self
-	}
-	
-	override func viewWillDisappear() {
-		PreferencesController.shared.delete(delegate: "editor")
 	}
 	
 	override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
@@ -90,6 +98,8 @@ class ViewController: NSViewController {
 }
 
 extension ViewController: NCRAutocompleteTableViewDelegate {
+	// MARK: Autocomplete Delegate
+	
 	// updated to work with NCRAutocompleteTextView
 	func textWillBeChecked() {
 		// sync text changes back to our project
@@ -106,11 +116,15 @@ extension ViewController: NCRAutocompleteTableViewDelegate {
 
 	func textView(_ textView: NSTextView!, completions words: [Any]!, forPartialWordRange charRange: NSRange, indexOfSelectedItem index: UnsafeMutablePointer<Int>!) -> [Any]! {
 		
+		guard autocompleteEnabled else {
+			return []
+		}
+		
 		guard let contents = sourceTextView?.string else {
 			return []
 		}
 		
-		var suggestions = project.characterNames
+		var suggestions = project.characterNames 
 		
 		// get the word the user is currently typing
 		let lower = contents.index(charRange.lowerBound)
@@ -119,12 +133,11 @@ extension ViewController: NCRAutocompleteTableViewDelegate {
 		let typedWord = String(contents[lower ..< upper])
 		
 		if !typedWord.isEmpty {
-			suggestions = project.characterNames.filter { item in
+			suggestions = suggestions.filter { item in
 				return item.starts(with: typedWord)
 			}
 		}
 		
-		print(typedWord)
 		return suggestions
 	}
 	
@@ -140,6 +153,8 @@ extension ViewController: NCRAutocompleteTableViewDelegate {
 }
 
 extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
+	// MARK: Table View Delegate
+	
 	func numberOfRows(in tableView: NSTableView) -> Int {
 		return project?.characters.count ?? 0
 	}
@@ -212,6 +227,8 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
 }
 
 extension ViewController: TallyDelegate {
+	// MARK: Tally Delegate
+	
 	func tallyIsAvailable(tally: [Int]) {
 		for (i, count) in tally.enumerated() {
 			let cell = charactersTableView.view(atColumn: 0, row: i, makeIfNecessary: false) as! CharacterTableViewCell
@@ -222,14 +239,20 @@ extension ViewController: TallyDelegate {
 }
 
 extension ViewController: PreferencesDelegate {
+	// MARK: Preferences Delegate
+	
 	func loadPreferences() {
 		let defaults = PreferencesController.shared.defaults
 		
 		let useAutoCorrect = defaults.value(forKey: KTPEditorAutoCorrectSuggest) as! Bool
 		let highlightsSyntax = defaults.value(forKey: KTPEditorSyntaxHighlighting) as! Bool
+		let lineNumbers = defaults.value(forKey: KTPEditorLineNumbers) as? Bool ?? false
+		autocompleteEnabled = defaults.value(forKey: KTPEditorAutocompletionEnabled) as? Bool ?? true
 		
 		settingUpdated(key: KTPEditorAutoCorrectSuggest, value: useAutoCorrect)
 		settingUpdated(key: KTPEditorSyntaxHighlighting, value: highlightsSyntax)
+		settingUpdated(key: KTPEditorAutocompletionEnabled, value: autocompleteEnabled)
+		settingUpdated(key: KTPEditorLineNumbers, value: lineNumbers)
 	}
 	
 	func settingUpdated(key: String, value: Any?) {
@@ -257,5 +280,30 @@ extension ViewController: PreferencesDelegate {
 				highlighter.highlight()
 			}
 		}
+		
+		else if key == KTPEditorAutocompletionEnabled {
+			guard let enabled = value as? Bool else {
+				return
+			}
+			
+			autocompleteEnabled = enabled
+		}
+		
+		else if key == KTPEditorLineNumbers {
+			guard let enabled = value as? Bool else {
+				return
+			}
+			
+			sourceTextView?.enclosingScrollView?.rulersVisible = enabled
+		}
+	}
+}
+
+extension ViewController: NSWindowDelegate {
+	// MARK: Window Delegate
+	
+	func windowWillClose(_ notification: Notification) {
+		PreferencesController.shared.delete(delegate: prefDelegateKey)
+		delegate?.editorWasClosed()
 	}
 }

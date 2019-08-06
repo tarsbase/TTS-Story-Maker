@@ -43,6 +43,10 @@ class CharacterDialogueTally: NSObject {
 	private func _tally() -> [Int] {
 		var count: [Int] = []
 		
+		guard project != nil else {
+			return []
+		}
+		
 		for _ in project.characters {
 			count.append(0)
 		}

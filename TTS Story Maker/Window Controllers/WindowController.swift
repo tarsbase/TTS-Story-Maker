@@ -23,7 +23,7 @@ class WindowController: NSWindowController {
         super.windowDidLoad()
 		
 		project = StoryProject()
-    
+		
 		guard let mvc = contentViewController as? ViewController else {
 			return
 		}
@@ -32,6 +32,7 @@ class WindowController: NSWindowController {
 		mainVC?.project = project
 		mainVC?.initialiseTallyController()
 		
+		window?.delegate = mainVC
 		setIndicator(active: false)
 		
 		// initialise our file dialogs
@@ -41,7 +42,7 @@ class WindowController: NSWindowController {
 		openDialog = NSOpenPanel()
 		openDialog.allowedFileTypes = [projectType]
 		openDialog.allowsMultipleSelection = false
-    }
+	}
 	
 	override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
 		if segue.identifier == "toPlayback" {
@@ -57,6 +58,8 @@ class WindowController: NSWindowController {
 			
 			// pass our project data
 			let dvc = segue.destinationController as! PlaybackWindowController
+		
+			mainVC?.delegate = dvc
 			dvc.set(story: project.story)
 		}
 	}
@@ -103,6 +106,16 @@ class WindowController: NSWindowController {
 		}
 	}
 	
+	func updateTitle() {
+		guard let url = lastFile,
+			let name = url.pathComponents.last
+			else {
+			return
+		}
+		
+		self.window?.title = "Editor - \"\(name)\""
+	}
+	
 	@IBAction func save(sender: AnyObject) {
 		// we can only do one save operation at a time!
 		guard savingIndicator.isHidden else {
@@ -137,6 +150,7 @@ class WindowController: NSWindowController {
 			DispatchQueue.global(qos: .userInitiated).async {
 				self.project?.save(to: self.saveDialog.url!)
 				self.setIndicator(active: false)
+				self.updateTitle()
 			}
 		}
 	}
@@ -148,6 +162,7 @@ class WindowController: NSWindowController {
 			}
 			
 			self.lastFile = self.openDialog.url
+			self.updateTitle()
 			
 			self.project?.load(from: self.openDialog.url!) { _, _ in
 				self.mainVC?.refresh()

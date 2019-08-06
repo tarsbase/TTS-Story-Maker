@@ -12,6 +12,8 @@ let KTPAllowsEffects = "allowsPortraitEffects"
 let KTPDefaultVoice = "defaultVoice"
 let KTPEditorAutoCorrectSuggest = "usesAutoCorrect"
 let KTPEditorSyntaxHighlighting = "usesSyntaxHighlighting"
+let KTPEditorAutocompletionEnabled = "usesAutocompletion"
+let KTPEditorLineNumbers = "showLineNumbers"
 
 class PreferencesViewController: NSViewController {
 	
@@ -19,6 +21,8 @@ class PreferencesViewController: NSViewController {
 	@IBOutlet weak var editorCheckingCB: NSButton!
 	@IBOutlet weak var editorSyntaxCB: NSButton!
 	@IBOutlet weak var allowsEffectsCB: NSButton!
+	@IBOutlet weak var autocompletionCB: NSButton!
+	@IBOutlet weak var lineNumbersCB: NSButton!
 	
 	var tts: NSSpeechSynthesizer!
 	let preferencesController = PreferencesController.shared
@@ -39,6 +43,9 @@ class PreferencesViewController: NSViewController {
 		editorCheckingCB?.state = defaults.value(forKey: KTPEditorAutoCorrectSuggest) as! Bool ? .on : .off
 		editorSyntaxCB?.state = defaults.value(forKey: KTPEditorSyntaxHighlighting) as! Bool ? .on : .off
 		allowsEffectsCB?.state = defaults.value(forKey: KTPAllowsEffects) as! Bool ? .on : .off
+		autocompletionCB?.state = (defaults.value(forKey: KTPEditorAutocompletionEnabled) as? Bool ?? true) ? .on : .off
+		lineNumbersCB?.state = (defaults.value(forKey: KTPEditorLineNumbers) as? Bool ?? false) ? .on : .off
+		
 		defaultVoiceCombobox?.stringValue = defaults.value(forKey: KTPDefaultVoice) as! String
 		
 		// set up our preview TTS synthesizer
@@ -83,6 +90,14 @@ class PreferencesViewController: NSViewController {
 			
 		case 2:
 			preferencesController.set(value: checked, for: KTPEditorSyntaxHighlighting)
+			break
+			
+		case 3:
+			preferencesController.set(value: checked, for: KTPEditorAutocompletionEnabled)
+			break
+			
+		case 4:
+			preferencesController.set(value: checked, for: KTPEditorLineNumbers)
 			break
 			
 		default:

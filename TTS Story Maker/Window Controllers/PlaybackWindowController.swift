@@ -12,7 +12,7 @@ class PlaybackWindowController: NSWindowController {
 	
 	@IBOutlet weak var seekSlider: NSSlider!
 	var mainVC: PlaybackViewController!
-
+	
     override func windowDidLoad() {
         super.windowDidLoad()
     
@@ -68,5 +68,11 @@ class PlaybackWindowController: NSWindowController {
 extension PlaybackWindowController: PlaybackDelegate {
 	func positionUpdated(current: Int) {
 		seekSlider?.doubleValue = Double(current)
+	}
+}
+
+extension PlaybackWindowController: EditorDelegate {
+	func editorWasClosed() {
+		close()
 	}
 }

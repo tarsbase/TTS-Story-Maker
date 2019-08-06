@@ -36,7 +36,8 @@ class PlaybackViewController: NSViewController {
 		tts.delegate = self
 		
 		tipLabel?.wantsLayer = true
-		PreferencesController.shared.add(delegate: self, with: "playMode")
+		
+		PreferencesController.shared.add(delegate: self, with: "playWindow")
     }
 	
 	override func viewDidAppear() {
@@ -65,7 +66,7 @@ class PlaybackViewController: NSViewController {
 			tts.stopSpeaking(at: .wordBoundary)
 		}
 		
-		PreferencesController.shared.delete(delegate: "playMode")
+		PreferencesController.shared.delete(delegate: "playWindow")
 	}
 	
 	// MARK: Actions
@@ -74,25 +75,25 @@ class PlaybackViewController: NSViewController {
 			return
 		}
 		
-		let photo = story.photo(for: scene.speaker)
-		let voice = story.voice(for: scene.speaker) ?? NSSpeechSynthesizer.VoiceName(rawValue: defaultVoice)
+		let photo = self.story.photo(for: scene.speaker)
+		let voice = self.story.voice(for: scene.speaker) ?? NSSpeechSynthesizer.VoiceName(rawValue: self.defaultVoice)
 		
 		// update our UI
-		progressIndicator?.doubleValue = story.progress()
+		self.progressIndicator?.doubleValue = self.story.progress()
 		
-		portraitView?.image = photo
-		portraitBG?.image = photo
+		self.portraitView?.image = photo
+		self.portraitBG?.image = photo
 		
-		speakerLabel?.stringValue = scene.speaker
-		dialogueLabel?.stringValue = scene.dialogue
+		self.speakerLabel?.stringValue = scene.speaker
+		self.dialogueLabel?.stringValue = scene.dialogue
 		
 		// prepare our synthesizer
-		if tts.isSpeaking {
-			tts.stopSpeaking(at: .wordBoundary)
+		if self.tts.isSpeaking {
+			self.tts.stopSpeaking(at: .wordBoundary)
 		}
 		
-		tts.setVoice(voice)
-		tts.startSpeaking(scene.dialogue)
+		self.tts.setVoice(voice)
+		self.tts.startSpeaking(scene.dialogue)
 	}
 	
 	func seek(position: Int) {

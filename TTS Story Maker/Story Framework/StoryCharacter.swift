@@ -7,7 +7,16 @@
 //
 
 import Foundation
+
+#if os(macOS)
+
 import Cocoa
+
+#elseif os(iOS)
+
+import AVFoundation
+
+#endif
 
 fileprivate let kName = "name"
 fileprivate let kVoice = "voice"
@@ -18,6 +27,8 @@ class StoryCharacter: NSObject, NSCoding {
 	var name: String!
 	var photo: Data!
 	
+	#if os(macOS)
+	
 	var voice: NSSpeechSynthesizer.VoiceName!
 	
 	init(name: String, voice: NSSpeechSynthesizer.VoiceName, photo: Data?) {
@@ -25,6 +36,18 @@ class StoryCharacter: NSObject, NSCoding {
 		self.voice = voice
 		self.photo = photo
 	}
+	
+	#elseif os(iOS)
+	
+	var voice: String!
+	
+	init(name: String, voice: String, photo: Data?) {
+		self.name = name
+		self.voice = voice
+		self.photo = photo
+	}
+	
+	#endif
 	
 	// MARK: NSCoding
 	
@@ -39,9 +62,19 @@ class StoryCharacter: NSObject, NSCoding {
 			self.name = name
 		}
 		
+		#if os(macOS)
+		
 		if let voice = aDecoder.decodeObject(forKey: kVoice) as? NSSpeechSynthesizer.VoiceName {
 			self.voice = voice
 		}
+		
+		#elseif os(iOS)
+		
+		if let voice = aDecoder.decodeObject(forKey: kVoice) as? String {
+			self.voice = voice
+		}
+		
+		#endif
 		
 		if let photo = aDecoder.decodeObject(forKey: kData) as? Data {
 			self.photo = photo
