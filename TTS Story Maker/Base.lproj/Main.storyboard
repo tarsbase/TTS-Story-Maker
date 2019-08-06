@@ -883,8 +883,8 @@ You can create a new character by clicking on the "+" button on the sidebar. Or,
                                                     <rect key="frame" x="0.0" y="0.0" width="513" height="110"/>
                                                     <subviews>
                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Tts-KQ-hyK">
-                                                            <rect key="frame" x="-2" y="93" width="188" height="17"/>
-                                                            <textFieldCell key="cell" lineBreakMode="clipping" title="How can I add more voices?" id="UBt-wP-8vM">
+                                                            <rect key="frame" x="-2" y="93" width="181" height="17"/>
+                                                            <textFieldCell key="cell" lineBreakMode="clipping" title="How do I add more voices?" id="UBt-wP-8vM">
                                                                 <font key="font" metaFont="systemHeavy" size="13"/>
                                                                 <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -944,7 +944,7 @@ To add new voices to your Mac, go to System Preferences-&gt;Accessibility-&gt;Sp
                                     <rect key="frame" x="0.0" y="444" width="515" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="giu-U8-XQ6">
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="giu-U8-XQ6">
                                     <rect key="frame" x="499" y="0.0" width="16" height="460"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -1537,7 +1537,7 @@ To add new voices to your Mac, go to System Preferences-&gt;Accessibility-&gt;Sp
                                                     <rect key="frame" x="0.0" y="0.0" width="390" height="461"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="bar" incrementalSearchingEnabled="YES" continuousSpellChecking="YES" allowsUndo="YES" spellingCorrection="YES" grammarChecking="YES" smartInsertDelete="YES" id="jSE-96-8YG">
+                                                        <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="bar" incrementalSearchingEnabled="YES" continuousSpellChecking="YES" allowsUndo="YES" spellingCorrection="YES" grammarChecking="YES" smartInsertDelete="YES" id="jSE-96-8YG" customClass="NCRAutocompleteTextView">
                                                             <rect key="frame" x="0.0" y="0.0" width="390" height="461"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1591,7 +1591,7 @@ To add new voices to your Mac, go to System Preferences-&gt;Accessibility-&gt;Sp
                     <connections>
                         <outlet property="charactersTableView" destination="VcU-v6-Rh7" id="Die-pj-D2g"/>
                         <outlet property="noCharactersLabel" destination="4hB-Dh-GrR" id="aeR-E6-VO4"/>
-                        <outlet property="sourceTextView" destination="jSE-96-8YG" id="D7Y-6W-2av"/>
+                        <outlet property="sourceTextView" destination="jSE-96-8YG" id="GQG-ia-oCg"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

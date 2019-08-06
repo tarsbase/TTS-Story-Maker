@@ -10,7 +10,7 @@ import Cocoa
 
 class ViewController: NSViewController {
 	
-	@IBOutlet weak var sourceTextView: NSTextView!
+	@IBOutlet weak var sourceTextView: NCRAutocompleteTextView!
 	@IBOutlet weak var charactersTableView: NSTableView!
 	@IBOutlet weak var noCharactersLabel: NSTextField!
 	
@@ -30,7 +30,7 @@ class ViewController: NSViewController {
 		// set up our source editor
 		sourceTextView?.font = NSFont.systemFont(ofSize: 18)
 		sourceTextView?.textColor = .controlTextColor
-		sourceTextView?.delegate = self
+		sourceTextView?.ncrDelegate = self
 		lastText = sourceTextView.string
 		
 		// set up our character table view
@@ -51,7 +51,7 @@ class ViewController: NSViewController {
 		sourceTextView?.string += "\n"
 		highlighter.highlight()
 		
-		PreferencesController.shared.add(delegate: self, with: "editor")
+		PreferencesController.shared.add(delegate: self, with: "editor")		
 	}
 	
 	func initialiseTallyController() {
@@ -89,9 +89,9 @@ class ViewController: NSViewController {
 	}
 }
 
-extension ViewController: NSTextViewDelegate {
-	func textView(_ view: NSTextView, willCheckTextIn range: NSRange, options: [NSSpellChecker.OptionKey : Any] = [:], types checkingTypes: UnsafeMutablePointer<NSTextCheckingTypes>) -> [NSSpellChecker.OptionKey : Any] {
-		
+extension ViewController: NCRAutocompleteTableViewDelegate {
+	// updated to work with NCRAutocompleteTextView
+	func textWillBeChecked() {
 		// sync text changes back to our project
 		project?.script = sourceTextView.string
 		
@@ -102,8 +102,40 @@ extension ViewController: NSTextViewDelegate {
 			
 			lastText = sourceTextView.string
 		}
+	}
+
+	func textView(_ textView: NSTextView!, completions words: [Any]!, forPartialWordRange charRange: NSRange, indexOfSelectedItem index: UnsafeMutablePointer<Int>!) -> [Any]! {
 		
-		return [:]
+		guard let contents = sourceTextView?.string else {
+			return []
+		}
+		
+		var suggestions = project.characterNames
+		
+		// get the word the user is currently typing
+		let lower = contents.index(charRange.lowerBound)
+		let upper = contents.index(charRange.upperBound)
+		
+		let typedWord = String(contents[lower ..< upper])
+		
+		if !typedWord.isEmpty {
+			suggestions = project.characterNames.filter { item in
+				return item.starts(with: typedWord)
+			}
+		}
+		
+		print(typedWord)
+		return suggestions
+	}
+	
+	func textView(_ textView: NSTextView!, imageForCompletion word: String!) -> NSImage! {
+		for character in project.characters {
+			if character.name == word {
+				return NSImage(data: character.photo)
+			}
+		}
+		
+		return nil
 	}
 }
 
@@ -172,6 +204,10 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
 		noCharactersLabel?.isHidden = project.characters.count > 0
 		sourceTextView?.string = project?.script ?? ""
 		charactersTableView?.reloadData()
+		
+		// update our text processors
+		highlighter.highlight()
+		tallyController.tally()
 	}
 }
 

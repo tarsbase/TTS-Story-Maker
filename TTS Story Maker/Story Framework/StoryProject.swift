@@ -15,7 +15,18 @@ fileprivate let kScript = "script"
 
 class StoryProject: NSObject {
 	var script: String!
-	var characters: [StoryCharacter] = []
+	var characterNames: [String] = []
+	
+	var characters: [StoryCharacter] = [] {
+		didSet {
+			characterNames = []
+			
+			for character in characters {
+				characterNames.append(character.name)
+			}
+		}
+	}
+	
 	var story: ISStory!
 	
 	override init() {
