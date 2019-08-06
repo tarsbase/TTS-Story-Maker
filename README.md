@@ -41,8 +41,12 @@ Download the latest release [here](https://github.com/MissEmlizB/TTS-Story-Maker
 
 # Credits
 
-NCRAutoCompleteTextView by @danjonweb:
+### NCRAutoCompleteTextView by @danjonweb:
 https://github.com/danjonweb/NCRAutocompleteTextView
 
 (I modified it a bit to work with my syntax highlighter, and it now has support for macOS Mojave's dark mode 🙃)
+
+
+### Line Numbers: by @yichizhang:
+https://github.com/yichizhang/NSTextView-LineNumberView
 
