@@ -38,7 +38,7 @@ class ViewController: NSViewController {
 		
 		// set up our source editor
 		sourceTextView?.lnv_setUpLineNumberView()
-		sourceTextView?.font = NSFont.systemFont(ofSize: 18)
+		sourceTextView?.font = NSFont.systemFont(ofSize: 15)
 		sourceTextView?.textColor = .controlTextColor
 		sourceTextView?.ncrDelegate = self
 		lastText = sourceTextView.string

@@ -146,11 +146,15 @@ class WindowController: NSWindowController {
 			}
 			
 			self.lastFile = self.saveDialog.url
+			let url = self.saveDialog.url!
 			
 			DispatchQueue.global(qos: .userInitiated).async {
-				self.project?.save(to: self.saveDialog.url!)
+				self.project?.save(to: url)
 				self.setIndicator(active: false)
-				self.updateTitle()
+				
+				DispatchQueue.main.async {
+					self.updateTitle()
+				}
 			}
 		}
 	}

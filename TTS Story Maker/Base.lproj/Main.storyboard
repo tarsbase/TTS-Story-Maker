@@ -1168,8 +1168,8 @@ To add new voices to your Mac, go to System Preferences-&gt;Accessibility-&gt;Sp
                                 <sliderAccessory key="maximumValueAccessory" id="T0Z-cQ-OTr">
                                     <sliderAccessoryBehavior key="behavior" id="Qds-YS-2jS"/>
                                 </sliderAccessory>
-                                <slider key="slider" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SYq-ah-V6i">
-                                    <rect key="frame" x="0.0" y="0.0" width="445" height="15"/>
+                                <slider key="slider" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SYq-ah-V6i">
+                                    <rect key="frame" x="-6" y="0.0" width="445" height="15"/>
                                     <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="cEt-03-sAJ"/>
                                     <connections>
                                         <action selector="seekWithSender:" target="IS7-oI-vG0" id="x1H-la-Fg6"/>
